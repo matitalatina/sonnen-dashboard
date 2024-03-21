@@ -1,30 +1,11 @@
 require 'net/http'
 require 'json'
 
+require_relative 'chart_repo'
+
 BATTERY_HOSTNAME = '192.168.1.125'
-CHART_HISTORY_COUNT = 150
-CHART_SKIP_NUMBER = 10
+
 uri = URI('http://' + BATTERY_HOSTNAME + ':8080/api/v1/status')
-
-class ChartRepo
-
-  def initialize()
-    @history = []
-    @counter = 0
-  end
-
-  def add(value)
-    
-    @history.pop if @counter != 0
-    @history << { 'x' => DateTime.now.to_time.to_i, 'y' => value }
-    @history = @history.last(CHART_HISTORY_COUNT)
-
-    @counter += 1
-    @counter %= CHART_SKIP_NUMBER
-  end
-
-  attr_accessor :history, :counter
-end
 
 battery_power_repo = ChartRepo.new()
 consumption_repo = ChartRepo.new()
