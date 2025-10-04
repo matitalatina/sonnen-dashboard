@@ -5,6 +5,7 @@ if !ENV['SMASHING_HASS_TOKEN'] || !ENV['SMASHING_HASS_URL']
     hass_url = ENV['SMASHING_HASS_URL']
     data_fetch = [
       ['ecoflow_battery_level', 'ecoflow-charge', nil],
+      ['ecoflow_slave_1_battery_level', 'ecoflow-slave-1-charge', nil],
       ['ecoflow_total_in_power', 'ecoflow-power-in', ChartRepo.new()],
       ['ecoflow_total_out_power', 'ecoflow-power-out', ChartRepo.new()],
     ]
