@@ -2,6 +2,10 @@ services:
   sonnen-dashboard:
     build: './'
     restart: unless-stopped
+    environment:
+      - TZ=Europe/Rome
+    volumes:
+      - /usr/share/zoneinfo:/usr/share/zoneinfo:ro
     # volumes:
     #   - ./dashboards:/usr/src/app/dashboards
     #   - ./jobs:/usr/src/app/jobs
